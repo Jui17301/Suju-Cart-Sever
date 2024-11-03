@@ -73,9 +73,8 @@ const getmyBooking = catchAsync(async (req: Request, res: Response) => {
 });
 
 const createPaymentIntent = catchAsync(async (req: Request, res: Response) => {
-  const { amount, order } = req.body; // Change from bookingData to order
+  const { amount, order } = req.body;
 
-  // Log for debugging
   console.log(
     'Creating payment intent with amount:',
     amount,
@@ -86,7 +85,7 @@ const createPaymentIntent = catchAsync(async (req: Request, res: Response) => {
   // Call the service to create PaymentIntent and save booking
   const paymentIntentResponse = await BookingService.createPaymentIntent(
     amount,
-    order, // Pass the correct data here
+    order,
   );
 
   sendResponse(res, {
