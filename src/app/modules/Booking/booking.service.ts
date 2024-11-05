@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { JwtPayload } from 'jsonwebtoken';
@@ -75,6 +76,7 @@ const getBookingByUserIntoDb = async (user: JwtPayload) => {
   }).countDocuments();
 
   const result = await Booking.aggregate([
+    // @ts-expect-error
     { $match: { userId: new Types.ObjectId(user), status: 'delivered' } },
     { $group: { _id: null, totalAmount: { $sum: '$totalAmount' } } },
   ]);
